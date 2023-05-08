@@ -15,6 +15,7 @@ namespace LTMS
 
         private string serviceType = "";
         private string laundryType = "";
+        public string label_weight = "";
         public string name, contact;
 
         public int totalamount;
@@ -44,17 +45,24 @@ namespace LTMS
             prices[2] = Convert.ToInt32(wash.Checked) * Wash;
             prices[3] = Convert.ToInt32(dry.Checked) * Dry;
             prices[4] = Convert.ToInt32(wash_dry.Checked) * WashDry;
+
+
             
 
             if (weight2 <= 4 && weight2 >= 1)
             {
                 weight2 = 35;
-            } else if (weight2 <= 10 && weights2 >= 5)
+                label_weight = "P35";
+
+            } else if (weight2 <= 10 && weight2 >= 5)
             {
                 weight2 = 65;
+                label_weight = "P65";
+
             } else if (weight2 > 10)
             {
                 weight2 = 100;
+                label_weight = "P100";
             }
             else
             {
@@ -135,6 +143,7 @@ namespace LTMS
             frm_invoice.Name = name;
             frm_invoice.Contact = contact;
             frm_invoice.totalAmount = payment;
+            frm_invoice.labelForweight = label_weight;
             frm_invoice.Show();
             this.Hide();
 

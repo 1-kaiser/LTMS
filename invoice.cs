@@ -15,9 +15,10 @@ namespace LTMS
 {
     public partial class invoice : Form
     {
-        public string Contact, serviceType, laundryType, weight, total;
+        public string Contact, serviceType, laundryType, weight, total, labelForweight;
 
         
+
         private void btn_services_Click(object sender, EventArgs e)
         {
 
@@ -25,8 +26,6 @@ namespace LTMS
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(label_totalAmount.Text, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qrCodeImage = qrCode.GetGraphic(8);
-            
-
             complete complete = new complete(qrCodeImage);
             complete.Show();
             this.Hide();
@@ -51,18 +50,22 @@ namespace LTMS
         private void invoice_Load(object sender, EventArgs e)
         {
             total = Convert.ToString(totalAmount);
+            
             label_serviceType.Text = serviceType;
             label_laundryType.Text = laundryType;
             label_weight.Text = weight;
             label_totalAmount.Text = total;
             label_fullName.Text = Name;
             label_contactNumber.Text = Contact;
+            labelWeight.Text = labelForweight;
 
-            
-            
-        
         }
 
-        
+        private void labelWeight_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
