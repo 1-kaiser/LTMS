@@ -22,47 +22,63 @@ namespace LTMS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            services frm_services = new services();
-            frm_services.name = textBox_fullName.Text;
-            frm_services.contact = textBox_contact.Text;
-            frm_services.Show();
-            this.Hide();
-            
-        }
-
-        private void textBox_fullName_TextChanged(object sender, EventArgs e)
-        {
             string nameInput = textBox_fullName.Text;
+            string contactInput = textBox_contact.Text;
 
             if (string.IsNullOrWhiteSpace(nameInput))
             {
                 MessageBox.Show("Invalid input: Please enter characters.");
-            }
+                frm_front form1 = new frm_front();
+                form1.Show();
+                this.Hide();
 
-            if (int.TryParse(nameInput, out int result))
+            } else
             {
-
-                MessageBox.Show("Invalid input: Please enter characters.");
+                services frm_services = new services();
+                frm_services.name = textBox_fullName.Text;
+                frm_services.contact = textBox_contact.Text;
+                frm_services.Show();
+                this.Hide();
             }
+ 
+            
+        }
+
+        
+
+        private void textBox_fullName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                string message = "Invalid input: Please enter characters.";
+                MessageBox.Show(message);
+                e.Handled = true;
+            }
+        }
+
+        private void textBox_contact_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                string message = "Invalid input: Not a valid numeric value.";
+                MessageBox.Show(message);
+                e.Handled = true;
+            }
+        }
+
+        private void textBox_fullName_TextChanged(object sender, EventArgs e)
+        {
 
         }
 
         private void textBox_contact_TextChanged(object sender, EventArgs e)
         {
-            string contactInput = textBox_contact.Text;
 
-            if (!int.TryParse(contactInput, out int result))
-            {
-                
-                MessageBox.Show("Invalid input: Not a valid numeric value.");
-            }
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-    
-        }
 
-        
+        }
     }
 }

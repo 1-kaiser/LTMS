@@ -73,6 +73,7 @@
             this.textBox_contact.Size = new System.Drawing.Size(200, 20);
             this.textBox_contact.TabIndex = 3;
             this.textBox_contact.TextChanged += new System.EventHandler(this.textBox_contact_TextChanged);
+            this.textBox_contact.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_contact_KeyPress);
             // 
             // textBox_fullName
             // 
@@ -82,6 +83,7 @@
             this.textBox_fullName.Size = new System.Drawing.Size(200, 20);
             this.textBox_fullName.TabIndex = 2;
             this.textBox_fullName.TextChanged += new System.EventHandler(this.textBox_fullName_TextChanged);
+            this.textBox_fullName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_fullName_KeyPress);
             // 
             // button1
             // 

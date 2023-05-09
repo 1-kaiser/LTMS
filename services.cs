@@ -37,6 +37,7 @@ namespace LTMS
         private void btn_services_Click(object sender, EventArgs e)
         {
 
+
             weight2 = Convert.ToInt32(weight_textbox.Text);
 
             int[] prices = new int[5];
@@ -46,8 +47,6 @@ namespace LTMS
             prices[3] = Convert.ToInt32(dry.Checked) * Dry;
             prices[4] = Convert.ToInt32(wash_dry.Checked) * WashDry;
 
-
-            
 
             if (weight2 <= 4 && weight2 >= 1)
             {
@@ -64,11 +63,9 @@ namespace LTMS
                 weight2 = 100;
                 label_weight = "P100";
             }
-            else
-            {
-                string message = "Weight cannot be null";
-                MessageBox.Show(message);
-            }
+
+            
+            
 
             if (self_service.Checked && wash.Checked) 
             { 
@@ -127,27 +124,39 @@ namespace LTMS
             {
                 laundryType = "Wash and Dry                    P50";
             }
-            else
+
+
+            if ((self_service.Checked || drop_off.Checked) && (wash.Checked || dry.Checked || wash_dry.Checked))
             {
-                string message = "Please select laundry type";
-                MessageBox.Show(message);
+                invoice frm_invoice = new invoice();
+                frm_invoice.serviceType = serviceType;
+                frm_invoice.laundryType = laundryType;
+                frm_invoice.weight = weight_textbox.Text;
+                frm_invoice.Name = name;
+                frm_invoice.Contact = contact;
+                frm_invoice.totalAmount = payment;
+                frm_invoice.labelForweight = label_weight;
+                frm_invoice.Show();
+                this.Hide();
+
+            } else
+            {
+                string message_service = "Please select service and laundry type";
+                MessageBox.Show(message_service);
+                services frm_services = new services();
+                frm_services.Show();
+                Hide();
             }
+        }
 
-
-            
-
-            invoice frm_invoice = new invoice();
-            frm_invoice.serviceType = serviceType;
-            frm_invoice.laundryType = laundryType;
-            frm_invoice.weight = weight_textbox.Text;
-            frm_invoice.Name = name;
-            frm_invoice.Contact = contact;
-            frm_invoice.totalAmount = payment;
-            frm_invoice.labelForweight = label_weight;
-            frm_invoice.Show();
-            this.Hide();
-
-
+        private void weight_textbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                string message = "Invalid input: Not a valid numeric value.";
+                MessageBox.Show(message);
+                e.Handled = true;
+            }
         }
 
         private void self_service_CheckedChanged(object sender, EventArgs e)
@@ -186,5 +195,7 @@ namespace LTMS
         }
 
         
+
+
     }
 }

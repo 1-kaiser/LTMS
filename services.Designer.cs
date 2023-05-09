@@ -38,10 +38,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.drop_off = new System.Windows.Forms.RadioButton();
             this.self_service = new System.Windows.Forms.RadioButton();
-            this.weight_textbox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_services = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.weight_textbox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -61,9 +61,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.weight_textbox);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.weight_textbox);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btn_services);
             this.panel1.Controls.Add(this.label1);
@@ -162,15 +162,6 @@
             this.self_service.UseVisualStyleBackColor = true;
             this.self_service.CheckedChanged += new System.EventHandler(this.self_service_CheckedChanged);
             // 
-            // weight_textbox
-            // 
-            this.weight_textbox.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.weight_textbox.Location = new System.Drawing.Point(281, 180);
-            this.weight_textbox.Name = "weight_textbox";
-            this.weight_textbox.Size = new System.Drawing.Size(45, 20);
-            this.weight_textbox.TabIndex = 8;
-            this.weight_textbox.TextChanged += new System.EventHandler(this.weight_textbox_TextChanged);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -203,6 +194,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Select your Preferred Service\r\nand Laundry Type";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // weight_textbox
+            // 
+            this.weight_textbox.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.weight_textbox.Location = new System.Drawing.Point(284, 184);
+            this.weight_textbox.Name = "weight_textbox";
+            this.weight_textbox.Size = new System.Drawing.Size(34, 20);
+            this.weight_textbox.TabIndex = 11;
+            this.weight_textbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.weight_textbox_KeyPress);
             // 
             // services
             // 
@@ -237,9 +237,9 @@
         private System.Windows.Forms.RadioButton wash_dry;
         private System.Windows.Forms.RadioButton dry;
         private System.Windows.Forms.RadioButton wash;
-        private System.Windows.Forms.TextBox weight_textbox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox weight_textbox;
     }
 }
